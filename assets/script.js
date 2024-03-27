@@ -19,14 +19,46 @@ const slides = [
 
 const arrowLeft = document.querySelector('.arrow_left');
 const arrowRight = document.querySelector('.arrow_right');
-let currentSlide = 0
+let currentSlide = 0;
+let img = document.querySelector('.banner-img')
+let tagLine = document.querySelector('#banner p')
+const dots = document.querySelectorAll('.dot')
+
+
+arrowRight.addEventListener('click', function() {
+	console.log("Tu as cliqué sur la flèche droite")
+	currentSlide += 1
+	if(currentSlide >= slides.length){
+		currentSlide = 0 //je reviens à l'image 1
+	}
+	changeSlide()
+  }
+)
+
 
 arrowLeft.addEventListener('click', function(){
-	currentSlide = currentSlide - 1
-	console.log("tu as cliqué sur la flèche gauche")
-})
+    console.log("Tu as cliqué sur la flèche gauche")
+	currentSlide -= 1
+	if(currentSlide < 0){
+		currentSlide = slides.length - 1 //je reviens à l'image 4
+	}
+	changeSlide()
+  }
+)
 
-arrowRight.addEventListener('click', function(){
-	currentSlide = currentSlide + 1
-	console.log("tu as cliqué sur la flèche droite")
-})
+function changeSlide(){
+	let newImg = slides[currentSlide].image
+	let imgText = slides[currentSlide].tagLine
+	img.src = "./assets/images/slideshow/" + newImg
+	tagLine.innerHTML = imgText
+	
+	//MAJ class dot
+	dots.forEach((dot, index) => {
+        if (index === currentSlide) {
+            dot.classList.add('dot_selected');
+        } else {
+            dot.classList.remove('dot_selected');
+        }
+    })
+}
+
