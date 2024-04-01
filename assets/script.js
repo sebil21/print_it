@@ -19,10 +19,10 @@ const slides = [
 
 const arrowLeft = document.querySelector('.arrow_left');
 const arrowRight = document.querySelector('.arrow_right');
+const dots = document.querySelectorAll('.dot')
 let currentSlide = 0;
 let img = document.querySelector('.banner-img')
 let tagLine = document.querySelector('#banner p')
-const dots = document.querySelectorAll('.dot')
 
 
 arrowRight.addEventListener('click', function() {
@@ -53,7 +53,7 @@ function changeSlide(){
 	tagLine.innerHTML = imgText
 	
 	//MAJ class dot
-	dots.forEach((dot, index) => {
+	dots.forEach(function(dot, index){
         if (index === currentSlide) {
             dot.classList.add('dot_selected');
         } else {
